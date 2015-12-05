@@ -13,7 +13,7 @@ $app->get($appConfig['apiPrefix'] . '/users', function () use ($app) {
 
 // orders
 $app->get($appConfig['apiPrefix'] . '/orders', function () use ($app) {
-    $app->render(200, ['result' => Order::with('products')->get()]);
+    $app->render(200, ['result' => Order::with('products', 'user')->get()]);
 });
 
 $app->get($appConfig['apiPrefix'] . '/orders/:id', function ($id) use ($app) {
