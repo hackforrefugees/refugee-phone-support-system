@@ -1,0 +1,205 @@
+/* Eric Meyer's Reset CSS v2.0 - http://cssreset.com */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
+
+/* LL Edits*/
+body,input,textarea,button{-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing:grayscale;}
+input,textarea,button{-webkit-appearance:none;border-radius:0;}
+html { box-sizing: border-box; }
+*, *:before, *:after { box-sizing: inherit; }
+details, summary {outline: none;}
+details summary::-webkit-details-marker {display: none;}
+
+
+/* Variables */
+$max_width: 1200px;
+$general_font_size: 16px;
+$general_line_height: 1.5rem;
+$general_font_family: sans-serif;
+$color_main: #135295;
+$color_main_light: #569fef;
+$color_secondary: #f7c948;
+
+/* Classes & Animations */
+.clear {
+    clear: both;
+    display: table;
+    content: '';
+}
+
+@-moz-keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@-webkit-keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@-moz-keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@-webkit-keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+section {
+    width: 100%;
+    padding: $general_line_height*2 $general_line_height;
+}
+
+header {
+    max-width: $max_width;
+    margin: 0 auto;
+    text-align: left;
+
+    .thin & {
+        max-width: $max_width/2;
+    }
+}
+
+.inner {
+    max-width: $max_width;
+    margin: 0 auto;
+
+    .thin & {
+        max-width: $max_width/2;
+    }
+}
+
+form {
+    width: 100%;
+
+    label {
+        display: block;
+        width: 100%;
+        line-height: $general_line_height;
+        margin-bottom: $general_line_height/2;
+    }
+
+    input {
+        padding: $general_line_height/2;
+        height: $general_line_height*2;
+        line-height: $general_line_height;
+        border: 1px solid #999;
+        margin-bottom: $general_line_height;
+        border-radius: $general_line_height/8;
+        font-size: 1rem;
+        &[type=text],
+        &[type=email] {
+            width: 100%;
+        }
+        &[type=submit] {
+            margin: 0 auto;
+            width: $general_line_height*6;
+            cursor: pointer;
+        }
+    }
+
+    textarea {
+        width: 100%;
+        padding: $general_line_height/2;
+        line-height: $general_line_height;
+        border: 1px solid #999;
+        margin-bottom: $general_line_height;
+        border-radius: $general_line_height/8;
+        font-size: 1rem;
+    }
+
+}
+
+main {
+    width: 100%;
+}
+
+article {
+
+    &:nth-child(2n+2) {
+        background: #f6f6f6;
+    }
+
+    div {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    &.user {
+
+        margin-bottom: $general_line_height;
+        padding: $general_line_height;
+
+        .avatar {
+            width: 6rem;
+            height: 6rem;
+            background: grey;
+            margin-right: $general_line_height;
+        }
+
+    }
+
+}
+
+table {
+    width: 100%;
+    tr {
+        border-bottom: 1px solid #999;
+    }
+    th {
+        text-align: left;
+        font-weight: bold;
+        border-top: 1px solid #999;
+        padding: $general_line_height/2;
+    }
+    td {
+        padding: $general_line_height/2;
+    }
+    thead {
+        tr {
+            background-color: $color_main;
+            color: #fff;
+        }
+    }
+    tbody {
+        tr {
+            &:nth-child(2n+2) {
+                background: #f6f6f6;
+            }
+        }
+    }
+}
+
+
+/* Typography and Colour */
+
+body {
+    font-family: $general_font_family;
+    font-size: $general_font_size;
+    line-height: $general_line_height;
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: $general_line_height;
+    color: $color_main;
+}
+
+h3 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: $general_line_height;
+    color: $color_main;
+}
