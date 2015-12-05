@@ -2,7 +2,8 @@
     "require": {
         "slim/slim": "^2.6",
         "entomb/slim-json-api": "dev-master",
-        "illuminate/database": "*"
+        "illuminate/database": "*",
+        "vlucas/valitron": "^1.2"
     },
     "autoload": {
         "files": [ "db.php" ],
