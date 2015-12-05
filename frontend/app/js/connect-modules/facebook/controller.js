@@ -3,30 +3,37 @@
 "use strict";
 
 /* @ngInject */
-module.exports = function ($window) {
-	// Executed when the SDK is loaded
+module.exports = function ($window, getFacebookSDK) {
+	getFacebookSDK();
+
+	var statusChangeCallback = response => {
+		console.log("statusChangeCallback", response);
+
+		this.connStatus = response.status;
+
+		if (this.connStatus === "connected") {
+			FB.api("/me", function (response) {
+				console.log(response);
+			});
+		}
+	};
+
+	this.login = () => {
+		if (this.fbInitted) return false;
+
+		FB.login(statusChangeCallback, {scope: "public_profile,email"});
+	};
+
 	$window.fbAsyncInit = function () {
+		this.fbInitted = true;
+
 		FB.init({
-			appId: "1648848162036097",
+			appId: location.hostname === "localhost" ? "1648848668702713" : "1648848162036097",
 			status: true,
 			cookie: true,
 			xfbml: true
 		});
+
+		FB.getLoginStatus(statusChangeCallback);
 	};
-
-	(function (d) {
-		var js,
-			id = "facebook-jssdk",
-			ref = d.getElementsByTagName("script")[0];
-
-		if (d.getElementById(id))
-			return;
-
-		js = d.createElement("script");
-		js.id = id;
-		js.async = true;
-		js.src = "//connect.facebook.net/en_US/all.js";
-
-		ref.parentNode.insertBefore(js, ref);
-	}(document));
 };
