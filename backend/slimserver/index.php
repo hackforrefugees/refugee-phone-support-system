@@ -7,14 +7,17 @@ $app->get('/hello/:name', function ($name) {
     if ($mysqli->connect_errno) {
         echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
     }
-    if ($result = $mysqli->query("SELECT 1")) {
+    if ($result = $mysqli->query("SELECT * FROM orders")) {
 
-        $numberOfRows = $result->num_rows;
+        /* parse to array */
+        while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+            $rows[] = $row;
+        }
 
         /* free result set */
         $result->close();
     }
-    echo "Hello, " . $numberOfRows;
+    echo json_encode($rows);
 });
 $app->run();
 ?>
