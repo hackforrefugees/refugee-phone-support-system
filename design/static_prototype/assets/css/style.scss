@@ -143,6 +143,11 @@ form {
     
     :-ms-input-placeholder { color: #000; }
     
+    .help {
+        width: 100%;
+        text-align: right;
+    }
+    
     .non-authenticated & {
         
         input[type="text"],
@@ -155,9 +160,11 @@ form {
             margin-top: $general_line_height;
         }
         
-        a {
+        .help {
             color: #fff;
-            float: right;
+            a {
+                color: #fff;
+            }
         }
         
     }
@@ -165,12 +172,6 @@ form {
 }
 
 .non-authenticated {
-    
-    height: 100%;
-    background-image: url(../img/poepleholdingphones.jpg);
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
     
     header,
     .inner {
@@ -254,6 +255,10 @@ body {
     font-family: $general_font_family;
     font-size: $general_font_size;
     line-height: $general_line_height;
+    background-image: url(../img/poepleholdingphones.jpg);
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
 }
 
 h2 {
