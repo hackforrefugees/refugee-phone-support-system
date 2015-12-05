@@ -89,6 +89,7 @@ header {
 }
 
 form {
+    
     width: 100%;
     
     label {
@@ -109,7 +110,8 @@ form {
         font-size: 1em;
         color: #000;
         &[type=text],
-        &[type=email] {
+        &[type=email],
+        &[type=password] {
             width: 100%;   
         }
         &[type=submit] {
@@ -133,6 +135,55 @@ form {
         border-radius: $border_radius;
     }
     
+    ::-webkit-input-placeholder { color: #000; }
+    
+    :-moz-placeholder { color: #000; }
+    
+    ::-moz-placeholder { color: #000; }
+    
+    :-ms-input-placeholder { color: #000; }
+    
+    .non-authenticated & {
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            margin-bottom: $general_line_height/4;
+        }
+        
+        input[type="submit"] {
+            margin-top: $general_line_height;
+        }
+        
+        a {
+            color: #fff;
+            float: right;
+        }
+        
+    }
+    
+}
+
+.non-authenticated {
+    
+    height: 100%;
+    background-image: url(../img/poepleholdingphones.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    
+    header,
+    .inner {
+        max-width: $max_width/3;
+    }
+    
+}
+
+#logo {
+    width: $general_font_size*20;
+    height: auto;
+    display: block;
+    margin: 0 auto;
 }
 
 main {
