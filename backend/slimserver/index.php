@@ -1,5 +1,9 @@
 <?php
+
+$api_path_prepend = '/v1';
+
 require 'vendor/autoload.php';
+
 $app = new \Slim\Slim();
 $app->get('/hello/:name', function ($name) {
 
@@ -16,5 +20,43 @@ $app->get('/hello/:name', function ($name) {
     }
     echo "Hello, " . $numberOfRows;
 });
+
+$app->view(new \JsonApiView());
+$app->add(new \JsonApiMiddleware());
+
+// users
+$app->get($api_path_prepend . '/users', function () use ($app) {
+    $app->render(200, ['result' => array(
+            ['id' => 1, 'name' => 'Name 1'],
+            ['id' => 2, 'name' => 'Name 2'],
+            ['id' => 3, 'name' => 'Name 3']
+        )]
+    );
+});
+
+$app->get($api_path_prepend . '/users/:id', function ($id) {
+    $app->render(200, ['result' => array(
+            'id' => 1, 'name' => 'Name 1'
+        )]
+    );
+});
+
+// orders
+$app->get($api_path_prepend . '/orders', function () {
+    $app->render(200, ['result' => array(
+            ['id' => 1, 'name' => 'Order 1'],
+            ['id' => 2, 'name' => 'Order 2'],
+            ['id' => 3, 'name' => 'Order 3']
+        )]
+    );
+});
+
+$app->get($api_path_prepend . '/orders/:id', function ($id) {
+    $app->render(200, ['result' => array(
+            'id' => 1, 'name' => 'Order 1'
+        )]
+    );
+});
+
 $app->run();
 ?>
