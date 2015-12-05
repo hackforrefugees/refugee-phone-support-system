@@ -18,87 +18,47 @@
             
         </header>
         
+        <div class="inner">
+            
+            <h3>Användare</h3>
+            
+        </div>
+        
     </section>
+    
+    <nav>
+        
+        <a href="./user_single.html">Din användare</a>
+        <a href="./user_list.html" class="active">Alla användare</a>
+        <a href="./orders_list.html">Alla ordrar</a>
+        <a href="./orders_create.html">Skapa order</a>
+        
+    </nav>
     
     <section>
         
-        <header>
-            
-            <h3>Identiteter</h3>
-            
-        </header>
-        
         <div class="inner">
             
-            <article class="user">
+            <table id="orders">
+                <thead>
+                    <tr>
+                        <th class="name">Namn</th>
+                        <th class="single_view">Visa användare</th>
+                    </tr>
+                </thead>
                 
-                <div class="avatar"></div>
+                <tbody>
+                    <tr>
+                        <td class="name">John Doe</td>
+                        <td class="single_view"><a href="./user_single.html">Visa användare &raquo;</a></td>
+                    </tr>
+                    <tr>
+                        <td class="name">Jane Doe</td>
+                        <td class="single_view"><a href="./user_single.html">Visa användare &raquo;</a></td>
+                    </tr>
+                </tbody>
                 
-                <div class="details">
-                    
-                    <h4>John Doe</h4>
-                    <h5>Role</h5>
-                    <a href="./user_single.html">Visa profil</a>
-                
-                </div>
-                
-            </article>
-        
-            <article class="user">
-                
-                <div class="avatar"></div>
-                
-                <div class="details">
-                    
-                    <h4>John Doe</h4>
-                    <h5>Role</h5>
-                    <a href="./user_single.html">Visa profil</a>
-                
-                </div>
-                
-            </article>
-        
-            <article class="user">
-                
-                <div class="avatar"></div>
-                
-                <div class="details">
-                    
-                    <h4>John Doe</h4>
-                    <h5>Role</h5>
-                    <a href="./user_single.html">Visa profil</a>
-                
-                </div>
-                
-            </article>
-        
-            <article class="user">
-                
-                <div class="avatar"></div>
-                
-                <div class="details">
-                    
-                    <h4>John Doe</h4>
-                    <h5>Role</h5>
-                    <a href="./user_single.html">Visa profil</a>
-                
-                </div>
-                
-            </article>
-        
-            <article class="user">
-                
-                <div class="avatar"></div>
-                
-                <div class="details">
-                    
-                    <h4>John Doe</h4>
-                    <h5>Role</h5>
-                    <a href="./user_single.html">Visa profil</a>
-                
-                </div>
-                
-            </article>
+            </table>
             
         </div>
         
