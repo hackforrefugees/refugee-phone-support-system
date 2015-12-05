@@ -5,22 +5,32 @@ require '../config.php';
 $app = new \Slim\Slim();
 $app->view(new \JsonApiView());
 $app->add(new \JsonApiMiddleware());
-// $app->add(new \Slim\Middleware\JwtAuthentication([
-//     "secret" => $appConfig['jwtSecret']
-// ]));
+$app->add(new \Slim\Middleware\JwtAuthentication([
+    'secret'   => $appConfig['jwtSecret'],
+    'path'     => '/api'
+]));
 
 // auth
-$app->post($appConfig['apiPrefix'] . '/login', function() use ($app) {
-    $password_hash = password_hash($app->request->post('password'), PASSWORD_DEFAULT);
+$app->post('/login', function() use ($app) {
     $user = User::whereEmail($app->request->post('email'))->first();
-    if ($password_hash == $user->password_hash) {
-        $app->render(200);
+    if (!$user) {
+        $app->render(403);
+    }
+
+    $password = $app->request->post('password');
+    if (password_verify($password, $user->password_hash)) {
+        $token = (new Lcobucci\JWT\Builder())->setIssuer('http://example.com') // Configures the issuer (iss claim)
+                        ->setIssuedAt(time()) // Configures the time that the token was issue (iat claim)
+                        ->setExpiration(time() + 3600) // Configures the expiration time of the token (exp claim)
+                        ->getToken(); // Retrieves the generated token
+
+        $app->render(200, ['token' => (string)$token]);
     } else {
         $app->render(403);
     }
 });
 
-$app->post($appConfig['apiPrefix'] . '/register', function() use ($app) {
+$app->post('/register', function() use ($app) {
     $user = new User();
     $user->email = $app->request->post('email');
     $user->password_hash = password_hash($app->request->post('password'), PASSWORD_DEFAULT);
