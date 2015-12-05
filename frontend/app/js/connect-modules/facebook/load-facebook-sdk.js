@@ -1,7 +1,9 @@
 "use strict";
 
-module.exports = function ($document) {
-	return function () {
+module.exports = function ($window, $document) {
+	return function (callback) {
+		$window.fbAsyncInit = callback;
+
 		var scriptId = "facebook-jssdk";
 
 		if (!$document.find("#" + scriptId).length) {

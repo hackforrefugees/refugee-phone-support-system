@@ -66,7 +66,7 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $htt
 			url: "/"
 		})
 
-		.state("orderForm", {
+		.state("order.create", {
 			controller: "OrderFormCtrl",
 			templateUrl: "/order-form.html",
 			url: "/order"
@@ -77,11 +77,19 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $htt
 			controller: "UserCtrl",
 			controllerAs: "ctrl",
 			redirectTo: "user.list",
-			template: "<ui-view></ui-view>",
+			views: {body: {template: "<div ui-view='bodyContent'></div>"}},
 			url: "/users"
 		})
 		.state("user.single", {
-			templateUrl: "/user-single.html",
+			views: {
+				"header@": {
+					template: "<h3>John Doe</h3><p>Role</p>"
+				},
+				bodyContent: {
+					templateUrl: "/user-single.html"
+				}
+			},
+			template: "",
 			url: "/:id"
 		})
 		.state("user.list", {

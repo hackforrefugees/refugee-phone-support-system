@@ -3,28 +3,8 @@
 "use strict";
 
 /* @ngInject */
-module.exports = function ($window, getFacebookSDK) {
-	getFacebookSDK();
-
-	var statusChangeCallback = response => {
-		console.log("statusChangeCallback", response);
-
-		this.connStatus = response.status;
-
-		if (this.connStatus === "connected") {
-			FB.api("/me", function (response) {
-				console.log(response);
-			});
-		}
-	};
-
-	this.login = () => {
-		if (this.fbInitted) return false;
-
-		FB.login(statusChangeCallback, {scope: "public_profile,email"});
-	};
-
-	$window.fbAsyncInit = function () {
+module.exports = function ($scope, loadFacebookSDK) {
+	loadFacebookSDK(() => {
 		this.fbInitted = true;
 
 		FB.init({
@@ -35,5 +15,22 @@ module.exports = function ($window, getFacebookSDK) {
 		});
 
 		FB.getLoginStatus(statusChangeCallback);
+	});
+
+	var statusChangeCallback = response => {
+		console.log("statusChangeCallback", response);
+
+		this.connStatus = response.status;
+		$scope.$apply();
+
+		if (this.connStatus === "connected") {
+			FB.api("/me", response => {
+				this.user = response;
+			});
+		}
+	};
+
+	this.login = () => {
+		FB.login(statusChangeCallback, {scope: "public_profile,email,user_friends,user_likes,user_posts"});
 	};
 };

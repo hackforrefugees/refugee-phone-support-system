@@ -7,17 +7,24 @@
 	<base href="/">
 </head>
 <body ng-app="RefPhoneAuth">
-	<header>
-		<h2>Refugee Phones</h2>
-		<nav>
-			<a ui-sref="orders">Ordrar</a>
-			<a ui-sref="orderForm">Lägg order</a>
-			<a ui-sref="user">Profiler</a>
-			<a ui-sref="user.single">Min profil</a>
-		</nav>
-	</header>
+	<section class="thin header">
+		<header>
+			<a ui-sref="index">
+				<img id="logo" src="/img/logo_white.png">
+			</a>
+		</header>
 
-	<ui-view></ui-view>
+		<div class="inner" ui-view="header"></div>
+	</section>
+
+	<main ui-view="body"></main>
+
+	<nav>
+		<a ui-sref="user.single" ui-sref-active="active">Din användare</a>
+		<a ui-sref="user.list" ui-sref-active="active">Alla användare</a>
+		<a ui-sref="order.list" ui-sref-active="active">Alla ordrar</a>
+		<a ui-sref="order.create" ui-sref-active="active">Skapa order</a>
+	</nav>
 
 	<script src="/js/app.js"></script>
 </body>

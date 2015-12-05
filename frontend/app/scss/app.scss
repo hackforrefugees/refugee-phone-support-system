@@ -34,29 +34,9 @@ $border_radius: $general_line_height/8;
     content: '';
 }
 
-@-moz-keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@-webkit-keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
-}
-
-@-moz-keyframes fadeOut {
-    from { opacity: 1; }
-    to { opacity: 0; }
-}
-
-@-webkit-keyframes fadeOut {
-    from { opacity: 1; }
-    to { opacity: 0; }
 }
 
 @keyframes fadeOut {
@@ -67,6 +47,42 @@ $border_radius: $general_line_height/8;
 section {
     width: 100%;
     padding: $general_line_height*2 $general_line_height;
+    background: $color_grey_bg;
+
+    &.header {
+        background-image: url("/img/poepleholdingphones.jpg");
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        padding-bottom: $general_line_height;
+
+        &.thin {
+
+            header {
+                max-width: $max_width;
+            }
+
+        }
+
+        h3 {
+            color: #fff;
+            margin-bottom: 0;
+            margin-top: $general_line_height/2;
+        }
+
+        p {
+            color: #fff;
+        }
+
+    }
+
+    .last-child & {
+        padding-bottom: $general_line_height * 4;
+    }
+
+    &.bg-white {
+        background-color: #fff;
+    }
 }
 
 header {
@@ -88,7 +104,12 @@ header {
     }
 }
 
+.module {
+    text-align: center;
+}
+
 form {
+
     width: 100%;
 
     label {
@@ -97,6 +118,10 @@ form {
         margin-bottom: $general_line_height/2;
         border-top: 1px solid $color_main;
         padding-top: $general_line_height/2;
+        &:first-child {
+            border-top: none;
+            padding-top: 0;
+        }
     }
 
     input {
@@ -109,7 +134,8 @@ form {
         font-size: 1em;
         color: #000;
         &[type=text],
-        &[type=email] {
+        &[type=email],
+        &[type=password] {
             width: 100%;
         }
         &[type=submit] {
@@ -133,10 +159,94 @@ form {
         border-radius: $border_radius;
     }
 
+    ::placeholder { color: #000; }
+
+    .help {
+        width: 100%;
+        text-align: right;
+    }
+
+    .non-authenticated & {
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            margin-bottom: $general_line_height/4;
+        }
+
+        input[type="submit"] {
+            margin-top: $general_line_height;
+        }
+
+        .help {
+            color: #fff;
+
+            a {
+                color: #fff;
+            }
+        }
+    }
+}
+
+#logo {
+    width: $general_font_size*8;
+    height: auto;
+    display: block;
+    margin: 0 0 0 auto;
+}
+
+.non-authenticated {
+
+    background-image: url("/img/poepleholdingphones.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+
+    header,
+    .inner {
+        max-width: $max_width/3;
+    }
+
+    #logo {
+        width: $general_font_size*20;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+
+    section {
+        background: transparent;
+    }
+
+    h2,h3,p {
+        color: #fff;
+    }
+
 }
 
 main {
     width: 100%;
+}
+
+nav {
+    position: fixed;
+    bottom:0;
+    left:0;
+    width: 100%;
+    display: flex;
+    box-shadow: 0px 0px 0.5em rgba(0, 0, 0, 0.2);
+    a {
+        color: #fff;
+        flex: 1;
+        padding: $general_line_height/2;
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: bold;
+        background: $color_main;
+        &.active {
+            background: $color_main_light;
+        }
+    }
 }
 
 article {
@@ -213,10 +323,9 @@ h2 {
 }
 
 h3 {
-    font-size: 2em;
+    font-size: 1.5em;
     font-weight: bold;
     margin-bottom: $general_line_height/2;
-    color: $color_main;
 }
 
 h4 {
@@ -240,6 +349,23 @@ a {
     text-decoration: none;
     &:hover {
         text-decoration: underline;
+    }
+}
+
+button {
+    border: none;
+    padding: $general_line_height*0.75 $general_line_height*0.75;
+    font-size: 1em;
+    font-weight: bold;
+    margin-top: $general_line_height*2;
+    cursor: pointer;
+    &.facebook {
+        color: #fff;
+        background: #4c67a0;
+    }
+    &.linkedin {
+        color: #fff;
+        background: #0077b5;
     }
 }
 
