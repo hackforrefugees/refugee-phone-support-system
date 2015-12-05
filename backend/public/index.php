@@ -25,6 +25,22 @@ $app->get($appConfig['apiPrefix'] . '/orders/:id', function ($id) use ($app) {
     }
 });
 
+$app->put($appConfig['apiPrefix'] . '/orders/:id', function ($id) use ($app) {
+    $order = Order::find($id);
+
+    $valid = $order->validate($app->request->post());
+    if (!$valid) {
+        $app->render(400, ['validation' => $order->errors]);
+    }
+
+    $order->fill($app->request->post());
+    if ($order->save()) {
+        $app->render(200);
+    } else {
+        $app->render(500);
+    }
+});
+
 $app->post($appConfig['apiPrefix'] . '/orders', function () use ($app) {
     $order = new Order();
     $valid = $order->validate($app->request->post());
