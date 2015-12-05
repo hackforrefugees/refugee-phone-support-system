@@ -25,15 +25,11 @@ $app->get($appConfig['apiPrefix'] . '/users/:id', function ($id) {
 
 // orders
 $app->get($appConfig['apiPrefix'] . '/orders', function () use ($app) {
-
-    $app->render(200, ['result' => Order::all()->toJson()]);
+    $app->render(200, ['result' => Order::with('products')->get()->toJson()]);
 });
 
-$app->get($appConfig['apiPrefix'] . '/orders/:id', function ($id) {
-    $app->render(200, ['result' => array(
-            'id' => 1, 'name' => 'Order 1'
-        )]
-    );
+$app->get($appConfig['apiPrefix'] . '/orders/:id', function ($id) use ($app) {
+   $app->render(200, ['result' => Order::with('products')->find($id)->toJson()]); 
 });
 
 $app->run();
