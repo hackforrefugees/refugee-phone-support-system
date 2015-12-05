@@ -21,7 +21,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `orders` (
-  `order_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `user_id` varchar(255) NOT NULL,
   `state` enum('PENDING','MORE_INFORMATION_NEEDED','APPROVED','SENT','DENIED') NOT NULL DEFAULT 'PENDING',
   `comment` text
@@ -46,8 +46,8 @@ CREATE TABLE `orders_products` (
 --
 
 CREATE TABLE `products` (
-  `product_id` int(11) NOT NULL,
-  `product_name` varchar(255) NOT NULL
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
