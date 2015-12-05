@@ -3,5 +3,9 @@
         "slim/slim": "^2.6",
         "entomb/slim-json-api": "dev-master",
         "illuminate/database": "*"
+    },
+    "autoload": {
+        "files": [ "db.php" ],
+        "classmap": [ "models" ]
     }
 }

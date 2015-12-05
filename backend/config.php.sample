@@ -2,13 +2,15 @@
 
 $appConfig = [
 	'db' => [
-		'driver' => 'mysql',
-	    'host' => '127.0.0.1',
-	    'database' => '',
-	    'username' => '',
-	    'password' => '',
-	    'collation' => 'utf8_general_ci',
-	    'prefix' => ''
+		'driver'    => 'mysql',
+		'host'      => '127.0.0.1',
+		'database'  => '',
+		'username'  => '',
+		'password'  => '',
+		'collation' => 'utf8_general_ci',
+		'charset'   => 'utf8',
+		'prefix'    => ''
 	],
-	'apiPrefix' => '/v1'
+	'apiPrefix' => '/v1',
+	'timezone'  => 'Europe/Stockholm'
 ];
