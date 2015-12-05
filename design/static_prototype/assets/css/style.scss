@@ -67,6 +67,14 @@ $border_radius: $general_line_height/8;
 section {
     width: 100%;
     padding: $general_line_height*2 $general_line_height;
+    background: $color_grey_bg;
+    &:first-child {
+        background-image: url(../img/poepleholdingphones.jpg);
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+
+    }
 }
 
 header {
@@ -171,20 +179,36 @@ form {
     
 }
 
+#logo {
+    width: $general_font_size*10;
+    height: auto;
+    display: block;
+    margin: 0 0 0 auto;
+}
+
 .non-authenticated {
+    
+    background-image: url(../img/poepleholdingphones.jpg);
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
     
     header,
     .inner {
         max-width: $max_width/3;
     }
-    
-}
 
-#logo {
-    width: $general_font_size*20;
-    height: auto;
-    display: block;
-    margin: 0 auto;
+    #logo {
+        width: $general_font_size*20;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+    
+    section {
+        background: transparent;
+    }
+    
 }
 
 main {
@@ -255,10 +279,6 @@ body {
     font-family: $general_font_family;
     font-size: $general_font_size;
     line-height: $general_line_height;
-    background-image: url(../img/poepleholdingphones.jpg);
-    background-size: cover;
-    background-position: center top;
-    background-repeat: no-repeat;
 }
 
 h2 {
