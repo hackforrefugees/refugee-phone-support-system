@@ -6,6 +6,11 @@ $app = new \Slim\Slim();
 $app->view(new \JsonApiView());
 $app->add(new \JsonApiMiddleware());
 
+// users
+$app->get($appConfig['apiPrefix'] . '/users', function () use ($app) {
+    $app->render(200, ['result' => User::all()]);
+});
+
 // orders
 $app->get($appConfig['apiPrefix'] . '/orders', function () use ($app) {
     $app->render(200, ['result' => Order::with('products')->get()]);
