@@ -57,8 +57,8 @@ var forProduction    = false,
 	mainScss         = "./app/scss/app.scss",
 	fontsSrc         = "./app/scss/fonts/*",
 	imgSrc           = "./app/img/*",
-	viewsSrc         = "./app/views/*.html",
 	partialsSrc      = "./app/views/partials/*.html",
+	viewsSrc         = ["./app/views/**/*.html", "!" + partialsSrc],
 	vendorSrc        = "./app/js/vendor/*.js",
 	jsSource         = ["./app/js/**/*.js", "!./app/js/templates.js", "!" + vendorSrc],
 	mainJs           = "./app/js/app.js",
@@ -68,7 +68,7 @@ var browserifyBundle = function (b, callback) {
 	var stream = b.bundle()
 		.pipe(source(mainJs))
 		.pipe(buffer())
-		.pipe(sourcemaps.init())
+		.pipe(sourcemaps.init());
 
 	if (forProduction)
 		stream.pipe(uglify());

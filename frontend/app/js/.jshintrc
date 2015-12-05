@@ -4,6 +4,7 @@
   "curly": false,
   "eqeqeq": true,
   "eqnull": true,
+  "esnext": true,
   "evil": true,
   "expr": true,
   "funcscope": true,
