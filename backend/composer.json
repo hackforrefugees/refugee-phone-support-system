@@ -3,7 +3,8 @@
         "slim/slim": "^2.6",
         "entomb/slim-json-api": "dev-master",
         "illuminate/database": "*",
-        "vlucas/valitron": "^1.2"
+        "vlucas/valitron": "^1.2",
+        "tuupola/slim-jwt-auth": "^1.0"
     },
     "autoload": {
         "files": [ "db.php" ],
