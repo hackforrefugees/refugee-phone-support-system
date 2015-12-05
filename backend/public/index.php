@@ -26,11 +26,17 @@ $app->get($appConfig['apiPrefix'] . '/orders/:id', function ($id) use ($app) {
 });
 
 $app->post($appConfig['apiPrefix'] . '/orders', function () use ($app) {
-    $order = Order::create($app->request->post());
-    if ($order) {
+    $order = new Order();
+    $valid = $order->validate($app->request->post());
+    if (!$valid) {
+        $app->render(400, ['validation' => $order->errors]);
+    }
+
+    $order->fill($app->request->post());
+    if ($order->save()) {
         $app->render(200);
     } else {
-        $app->render(400);
+        $app->render(500);
     }
 });
 

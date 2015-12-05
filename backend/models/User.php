@@ -1,7 +1,7 @@
 <?php
 require '../vendor/autoload.php';
 
-class User extends \Illuminate\Database\Eloquent\Model
+class User extends BaseModel
 {
 	protected $connection = 'userDb';
 	protected $table      = 'Users';
