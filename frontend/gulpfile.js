@@ -54,8 +54,8 @@ var wrap = function (prefix, suffix) {
 
 var forProduction    = false,
 	sassSource       = "./app/scss/*.scss",
-	mainsass         = "./app/scss/app.scss",
-	fontsSrc         = "./node_modules/bootstrap/fonts/*",
+	mainScss         = "./app/scss/app.scss",
+	fontsSrc         = "./app/scss/fonts/*",
 	imgSrc           = "./app/img/*",
 	viewsSrc         = "./app/views/*.html",
 	partialsSrc      = "./app/views/partials/*.html",
