@@ -24,9 +24,15 @@
         
         <div class="inner">
             
-            <form>
+            <form action="register_confirm.html">
                 
-                <input type="email" id="email" name="email" placeholder="E-mail" />
+                <input type="text" id="name" name="name" placeholder="Namn" required="required" />
+                <input type="email" id="email" name="email" placeholder="E-mail" required="required" />
+                <input type="text" id="phone" name="phone" placeholder="Telefon" required="required" />
+                <input type="password" id="password" name="password" placeholder="Lösenord" required="required" />
+                <div class="help">
+                    <a href="./login.html">Logga in</a>
+                </div>
                 <input type="submit" value="Registrera dig &#10095;" />
             
             </form>
