@@ -6,30 +6,22 @@ $app = new \Slim\Slim();
 $app->view(new \JsonApiView());
 $app->add(new \JsonApiMiddleware());
 
-// users
-$app->get($appConfig['apiPrefix'] . '/users', function () use ($app) {
-    $app->render(200, ['result' => array(
-            ['id' => 1, 'name' => 'Name 1'],
-            ['id' => 2, 'name' => 'Name 2'],
-            ['id' => 3, 'name' => 'Name 3']
-        )]
-    );
-});
-
-$app->get($appConfig['apiPrefix'] . '/users/:id', function ($id) {
-    $app->render(200, ['result' => array(
-            'id' => 1, 'name' => 'Name 1'
-        )]
-    );
-});
-
 // orders
 $app->get($appConfig['apiPrefix'] . '/orders', function () use ($app) {
-    $app->render(200, ['result' => Order::with('products')->get()->toJson()]);
+    $app->render(200, ['result' => Order::with('products')->get()]);
 });
 
 $app->get($appConfig['apiPrefix'] . '/orders/:id', function ($id) use ($app) {
-   $app->render(200, ['result' => Order::with('products')->find($id)->toJson()]); 
+   $app->render(200, ['result' => Order::with('products')->find($id)]); 
+});
+
+// products
+$app->get($appConfig['apiPrefix'] . '/products', function () use ($app) {
+    $app->render(200, ['result' => Product::all()]);
+});
+
+$app->get($appConfig['apiPrefix'] . '/products/:id', function ($id) use ($app) {
+   $app->render(200, ['result' => Product::find($id)]); 
 });
 
 $app->run();
