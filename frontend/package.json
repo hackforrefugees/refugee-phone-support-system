@@ -13,12 +13,15 @@
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/hackforrefugees/refugee-phone-support-system/issues"
+  "browserify": {
+    "transform": [
+      "browserify-ngannotate"
+    ]
   },
   "homepage": "https://github.com/hackforrefugees/refugee-phone-support-system#readme",
   "devDependencies": {
     "browserify": "^12.0.1",
+    "browserify-ngannotate": "^2.0.0",
     "del": "^2.1.0",
     "gulp": "^3.9.0",
     "gulp-angular-templatecache": "^1.8.0",

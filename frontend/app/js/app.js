@@ -13,11 +13,12 @@ var app = angular.module("Hyresrattskollen", [
 
 	// templates.js is a generated file that contains inlined versions of view partials
 	require("./templates.js"),
+	require("./resources").name
 ]);
 
 app.constant("apiUrl", "//example.com");
 
-app.config(function ($stateProvider, $locationProvider, $urlRouterProvider) {
+app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $httpProvider) {
 	$urlRouterProvider.otherwise("/");
 
 	var queryModel = function (model, params) {
@@ -25,6 +26,15 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider) {
 			return model.query(params).$promise;
 		}];
 	};
+
+	$httpProvider.interceptors.push(function ($q) {
+		return {
+			request: function(config) {
+				console.log("authenticating", config);
+				return true;
+			}
+		};
+	});
 
 	$stateProvider
 		.state("index", {
