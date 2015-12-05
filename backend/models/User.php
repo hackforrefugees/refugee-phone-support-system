@@ -10,4 +10,5 @@ class User extends BaseModel
     							'active'   => 'boolean',
     							'verified' => 'boolean'
 							];
+	public $timestamps    = false;
 }
