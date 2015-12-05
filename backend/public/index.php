@@ -20,6 +20,15 @@ $app->get($appConfig['apiPrefix'] . '/orders/:id', function ($id) use ($app) {
     }
 });
 
+$app->post($appConfig['apiPrefix'] . '/orders', function () use ($app) {
+    $order = Order::create($app->request->post());
+    if ($order) {
+        $app->render(200);
+    } else {
+        $app->render(400);
+    }
+});
+
 // products
 $app->get($appConfig['apiPrefix'] . '/products', function () use ($app) {
     $app->render(200, ['result' => Product::all()]);
