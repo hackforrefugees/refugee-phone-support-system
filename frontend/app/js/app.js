@@ -83,7 +83,7 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $htt
 		.state("user.single", {
 			views: {
 				"header@": {
-					template: "<h3>John Doe</h3><p>Role</p>"
+					template: "<h3>{{user.name || 'John Doe'}}</h3><p>Role</p>"
 				},
 				bodyContent: {
 					templateUrl: "/user-single.html"

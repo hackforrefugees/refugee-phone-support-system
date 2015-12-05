@@ -359,6 +359,7 @@ button {
     font-weight: bold;
     margin-top: $general_line_height*2;
     cursor: pointer;
+
     &.facebook {
         color: #fff;
         background: #4c67a0;
@@ -366,6 +367,10 @@ button {
     &.linkedin {
         color: #fff;
         background: #0077b5;
+    }
+
+    &:disabled {
+        color: lightgray;
     }
 }
 

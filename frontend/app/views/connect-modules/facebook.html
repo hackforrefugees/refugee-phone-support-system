@@ -1,1 +1,11 @@
-<button ng-click="fb.login()" ng-disabled="fb.fbInitted && (!fb.connStatus || fb.connStatus !== 'connected')">Log in to Facebook</button>
+<section class="thin module bg-white">
+	<div class="inner">
+		<h3>Autensiera dig själv via Facebook</h3>
+
+		<div>
+			<img ng-src="{{fb.getFacebookProfileImage()}}">
+		</div>
+
+		<button class="facebook" ng-click="fb.login()" >Logga in med Facebook</button>
+	</div>
+</section>
