@@ -12,12 +12,20 @@ details summary::-webkit-details-marker {display: none;}
 
 /* Variables */
 $max_width: 1200px;
+
 $general_font_size: 16px;
-$general_line_height: 1.5rem;
-$general_font_family: sans-serif;
+$general_line_height: 1.5em;
+$general_font_family: 'Roboto', sans-serif;
+
 $color_main: #135295;
 $color_main_light: #569fef;
+$color_main_lighter: #ebf3ff;
 $color_secondary: #f7c948;
+$color_grey_bg: #e6e6e6;
+$color_grey_text: #999999;
+
+$border: 1px solid #999;
+$border_radius: $general_line_height/8;
 
 /* Classes & Animations */
 .clear {
@@ -86,26 +94,32 @@ form {
     label {
         display: block;
         width: 100%;
-        line-height: $general_line_height;
         margin-bottom: $general_line_height/2;
+        border-top: 1px solid $color_main;
+        padding-top: $general_line_height/2;
     }
 
     input {
         padding: $general_line_height/2;
         height: $general_line_height*2;
         line-height: $general_line_height;
-        border: 1px solid #999;
         margin-bottom: $general_line_height;
-        border-radius: $general_line_height/8;
-        font-size: 1rem;
+        border: none;
+        border-radius: $border_radius;
+        font-size: 1em;
+        color: #000;
         &[type=text],
         &[type=email] {
             width: 100%;
         }
         &[type=submit] {
             margin: 0 auto;
-            width: $general_line_height*6;
+            width: 100%;
             cursor: pointer;
+            background-color: $color_main;
+            color: #fff;
+            font-weight: bold;
+            text-transform: uppercase;
         }
     }
 
@@ -113,10 +127,10 @@ form {
         width: 100%;
         padding: $general_line_height/2;
         line-height: $general_line_height;
-        border: 1px solid #999;
         margin-bottom: $general_line_height;
-        border-radius: $general_line_height/8;
-        font-size: 1rem;
+        font-size: 1em;
+        border: none;
+        border-radius: $border_radius;
     }
 
 }
@@ -127,8 +141,10 @@ main {
 
 article {
 
+    background: #fff;
+
     &:nth-child(2n+2) {
-        background: #f6f6f6;
+        background: $color_main_lighter;
     }
 
     div {
@@ -138,12 +154,11 @@ article {
 
     &.user {
 
-        margin-bottom: $general_line_height;
         padding: $general_line_height;
 
         .avatar {
-            width: 6rem;
-            height: 6rem;
+            width: 6em;
+            height: 6em;
             background: grey;
             margin-right: $general_line_height;
         }
@@ -154,13 +169,11 @@ article {
 
 table {
     width: 100%;
-    tr {
-        border-bottom: 1px solid #999;
-    }
+    border: none;
+
     th {
         text-align: left;
         font-weight: bold;
-        border-top: 1px solid #999;
         padding: $general_line_height/2;
     }
     td {
@@ -174,8 +187,9 @@ table {
     }
     tbody {
         tr {
+            background: #fff;
             &:nth-child(2n+2) {
-                background: #f6f6f6;
+                background: $color_main_lighter;
             }
         }
     }
@@ -185,21 +199,62 @@ table {
 /* Typography and Colour */
 
 body {
+    background-color: $color_grey_bg;
     font-family: $general_font_family;
     font-size: $general_font_size;
     line-height: $general_line_height;
 }
 
 h2 {
-    font-size: 2rem;
+    font-size: 2em;
     font-weight: bold;
     margin-bottom: $general_line_height;
     color: $color_main;
 }
 
 h3 {
-    font-size: 2rem;
+    font-size: 2em;
     font-weight: bold;
-    margin-bottom: $general_line_height;
+    margin-bottom: $general_line_height/2;
     color: $color_main;
+}
+
+h4 {
+    font-weight: bold;
+}
+
+label {
+    color: $color_main;
+    font-size: 1.5em;
+    line-height: $general_line_height*0.75;
+    span {
+        color: $color_grey_text;
+        font-size: 0.75em;
+        width: 100%;
+        display: block;
+    }
+}
+
+a {
+    color: $color_secondary;
+    text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+@media screen and (max-width: 960px ) {
+
+    body {
+        font-size: 14px;
+    }
+
+}
+
+@media screen and (max-width: 480px ) {
+
+    body {
+        font-size: 12px;
+    }
+
 }

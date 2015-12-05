@@ -4,7 +4,7 @@ var angular = require("angular");
 
 
 
-var app = angular.module("Hyresrattskollen", [
+var app = angular.module("RefPhoneAuth", [
 	require("angular-animate"),
 	require("angular-aria"),
 	require("angular-messages"),
@@ -13,12 +13,16 @@ var app = angular.module("Hyresrattskollen", [
 
 	// templates.js is a generated file that contains inlined versions of view partials
 	require("./templates.js"),
-	require("./resources").name
+	require("./resources").name,
+	require("./users").name
 ]);
 
-app.constant("apiUrl", "//example.com");
+app.controller("MainCtrl", require("./main-ctrl.js"));
+
+app.constant("apiUrl", "//172.20.10.5");
 
 app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $httpProvider) {
+	$locationProvider.html5Mode(true);
 	$urlRouterProvider.otherwise("/");
 
 	var queryModel = function (model, params) {
@@ -30,17 +34,18 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $htt
 	$httpProvider.interceptors.push(function ($q) {
 		return {
 			request: function(config) {
-				console.log("authenticating", config);
-				return true;
+				console.log("Intercepting", config.url);
+				return config;
 			}
 		};
 	});
 
 	$stateProvider
 		.state("index", {
-			controller: "IndexCtrl",
-			templateUrl: "user.html",
-			url: ""
+			controller: "MainCtrl",
+			controllerAs: "main",
+			templateUrl: "/main.html",
+			url: "/"
 		})
 		.state("order", {
 			abstract: true,
@@ -50,39 +55,40 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $htt
 			url: "/orders"
 		})
 		.state("order.single", {
-			templateUrl: "order-single.html",
+			templateUrl: "/order-single.html",
 			url: "/:id"
 		})
 		.state("order.list", {
-			templateUrl: "order-list.html",
+			templateUrl: "/order-list.html",
 			url: "/"
 		})
 
 		.state("orderForm", {
 			controller: "OrderFormCtrl",
-			templateUrl: "order-form.html",
+			templateUrl: "/order-form.html",
 			url: "/order"
 		})
 
 		.state("user", {
 			abstract: true,
 			controller: "UserCtrl",
+			controllerAs: "ctrl",
 			redirectTo: "user.list",
 			template: "<ui-view></ui-view>",
 			url: "/users"
 		})
 		.state("user.single", {
-			templateUrl: "user-single.html",
+			templateUrl: "/user-single.html",
 			url: "/:id"
 		})
 		.state("user.list", {
-			templateUrl: "user-list.html",
+			templateUrl: "/user-list.html",
 			url: "/"
 		});
 });
 
 
-app.run(function ($rootScope, $state, $modal, $timeout) {
+app.run(function ($rootScope, $state, $timeout) {
 	$rootScope.$on("$stateChangeStart", function(event, toState, toParams) {
 		if (toState.redirectTo) {
 			event.preventDefault();

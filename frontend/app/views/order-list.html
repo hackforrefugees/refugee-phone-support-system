@@ -15,17 +15,11 @@
 			</thead>
 
 			<tbody>
-				<tr>
-					<td class="unique_id">1</td>
-					<td class="recipient">John Doe</td>
-					<td class="amount_phones">10</td>
-					<td class="amount_sims">10</td>
-				</tr>
-				<tr>
-					<td class="unique_id">2</td>
-					<td class="recipient">Jane Doe</td>
-					<td class="amount_phones">20</td>
-					<td class="amount_sims">20</td>
+				<tr ng-repeat="order in orders">
+					<td class="unique_id">{{order.id}}</td>
+					<td class="recipient">{{order.name}}</td>
+					<td class="amount_phones">{{order.amount_phones}}</td>
+					<td class="amount_sims">{{order.name}}</td>
 				</tr>
 			</tbody>
 		</table>
