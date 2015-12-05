@@ -24,11 +24,13 @@
         
         <div class="inner">
             
-            <form>
+            <form action="user_single.html">
                 
-                <input type="email" id="email" name="email" placeholder="E-mail" />
-                <input type="password" id="password" name="password" placeholder="Lösenord" />
-                <a href="./login_retrive_password.html">Glömt lösenord</a>
+                <input type="email" id="email" name="email" placeholder="E-mail" required="required" />
+                <input type="password" id="password" name="password" placeholder="Lösenord" required="required" />
+                <div class="help">
+                    <a href="./register.html">Registrera dig</a> / <a href="./login_retrive_password.html">Glömt lösenord</a>
+                </div>
                 <input type="submit" value="Logga in &#10095;" />
             
             </form>

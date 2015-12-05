@@ -1,0 +1,26 @@
+<?php
+
+$appConfig = [
+	'db' => [
+		'driver'    => 'mysql',
+		'host'      => '127.0.0.1',
+		'database'  => '',
+		'username'  => '',
+		'password'  => '',
+		'collation' => 'utf8_general_ci',
+		'charset'   => 'utf8',
+		'prefix'    => ''
+	],
+	'userDb' => [
+		'driver'    => 'pgsql',
+		'host'      => '',
+		'database'  => '',
+		'username'  => '',
+		'password'  => '',
+		'charset'   => 'utf8',
+	    'collation' => 'utf8_unicode_ci',
+	    'prefix'    => ''
+	],
+	'apiPrefix' => '/v1',
+	'timezone'  => 'Europe/Stockholm'
+];

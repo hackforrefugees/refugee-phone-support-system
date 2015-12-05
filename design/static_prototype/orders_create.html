@@ -10,45 +10,33 @@
 
 <body>
     
-    <section>
-        
-        <header>
-            
-            <h2>Refugee Phones</h2>
-            
-        </header>
-        
-    </section>
-    
     <section class="thin">
         
         <header>
             
-            <h3>Logga in</h3>
+            <a href="./"><img id="logo" src="assets/img/logo_white.png" alt="logo_white" width="800" height="600"></a>
+            
             
         </header>
         
         <div class="inner">
             
-            <form>
-                
-                <label for="email">E-mail</label>
-                <input type="email" id="email" name="email" />
-                <input type="submit" value="Logga in &#10095;" />
-            
-            </form>
+            <h3>Beställ</h3>
             
         </div>
         
     </section>
     
-    <section class="thin">
+    <nav>
+        
+        <a href="./user_single.html">Din användare</a>
+        <a href="./user_list.html">Alla användare</a>
+        <a href="./orders_list.html">Alla ordrar</a>
+        <a href="./orders_create.html" class="active">Skapa order</a>
+        
+    </nav>
     
-        <header>
-            
-            <h3>Beställ</h3>
-            
-        </header>
+    <section class="thin">
         
         <div class="inner">
             
@@ -72,134 +60,9 @@
                 <label for="additional">Övrigt</label>
                 <textarea rows="4" id="additional" name="additional"></textarea>
                 
-                <input type="submit" value="Skicka &#10095;" />
+                <input type="submit" value="Beställ &#10095;" />
             
             </form>
-            
-        </div>
-        
-    </section>
-    
-    <section>
-        
-        <header>
-            
-            <h3>Identiteter</h3>
-            
-        </header>
-        
-        <div class="inner">
-            
-            <article class="user">
-                
-                <div class="avatar"></div>
-                
-                <div class="details">
-                    
-                    <h4>John Doe</h4>
-                    <h5>Role</h5>
-                    <a href="#">Visa profil</a>
-                
-                </div>
-                
-            </article>
-        
-            <article class="user">
-                
-                <div class="avatar"></div>
-                
-                <div class="details">
-                    
-                    <h4>John Doe</h4>
-                    <h5>Role</h5>
-                    <a href="#">Visa profil</a>
-                
-                </div>
-                
-            </article>
-        
-            <article class="user">
-                
-                <div class="avatar"></div>
-                
-                <div class="details">
-                    
-                    <h4>John Doe</h4>
-                    <h5>Role</h5>
-                    <a href="#">Visa profil</a>
-                
-                </div>
-                
-            </article>
-        
-            <article class="user">
-                
-                <div class="avatar"></div>
-                
-                <div class="details">
-                    
-                    <h4>John Doe</h4>
-                    <h5>Role</h5>
-                    <a href="#">Visa profil</a>
-                
-                </div>
-                
-            </article>
-        
-            <article class="user">
-                
-                <div class="avatar"></div>
-                
-                <div class="details">
-                    
-                    <h4>John Doe</h4>
-                    <h5>Role</h5>
-                    <a href="#">Visa profil</a>
-                
-                </div>
-                
-            </article>
-            
-        </div>
-        
-    </section>
-    
-    <section>
-        
-        <header>
-            
-            <h3>Ordrar</h3>
-            
-        </header>
-        
-        <div class="inner">
-            
-            <table id="orders">
-                <thead>
-                    <tr>
-                        <th class="unique_id">Order id.</th>
-                        <th class="recipient">Beställare</th>
-                        <th class="amount_phones">Antal telefoner</th>
-                        <th class="amount_sims">Antal sim-kort</th>
-                    </tr>
-                </thead>
-                
-                <tbody>
-                    <tr>
-                        <td class="unique_id">1</td>
-                        <td class="recipient">John Doe</td>
-                        <td class="amount_phones">10</td>
-                        <td class="amount_sims">10</td>
-                    </tr>
-                    <tr>
-                        <td class="unique_id">2</td>
-                        <td class="recipient">Jane Doe</td>
-                        <td class="amount_phones">20</td>
-                        <td class="amount_sims">20</td>
-                    </tr>
-                </tbody>
-                
-            </table>
             
         </div>
         
