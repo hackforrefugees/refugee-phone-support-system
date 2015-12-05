@@ -22,5 +22,6 @@ $appConfig = [
 	    'prefix'    => ''
 	],
 	'apiPrefix' => '/v1',
-	'timezone'  => 'Europe/Stockholm'
+	'timezone'  => 'Europe/Stockholm',
+	'jwtSecret' => 'suuuupersecretkey'
 ];
