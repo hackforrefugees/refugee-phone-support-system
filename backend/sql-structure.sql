@@ -61,9 +61,9 @@ ALTER TABLE `orders`
   ADD PRIMARY KEY (`order_id`);
 
 --
--- Indexes for table `orders_products`
+-- Indexes for table `order_product`
 --
-ALTER TABLE `orders_products`
+ALTER TABLE `order_product`
   ADD PRIMARY KEY (`order_id`,`product_id`),
   ADD KEY `product_id` (`product_id`);
 
