@@ -13,8 +13,10 @@ var app = angular.module("RefPhoneAuth", [
 
 	// templates.js is a generated file that contains inlined versions of view partials
 	require("./templates.js"),
+
 	require("./resources").name,
-	require("./users").name
+	require("./users").name,
+	require("./connect-modules").name
 ]);
 
 app.controller("MainCtrl", require("./main-ctrl.js"));
@@ -47,6 +49,7 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $htt
 			templateUrl: "/main.html",
 			url: "/"
 		})
+
 		.state("order", {
 			abstract: true,
 			controller: "OrderCtrl",
@@ -99,11 +102,11 @@ app.run(function ($rootScope, $state, $timeout) {
 
 
 	$rootScope.getStateTitle = function (state) {
-		if (state.title) {
-			return state.title;
+		if (state.data && state.data.title) {
+			return state.data.title;
 		} else {
 			var parentState = $state.get("^", state.name);
-			return parentState && parentState.name ? parentState.title || $rootScope.getStateTitle(parentState) : "";
+			return (parentState && parentState.name) ? parentState.data && parentState.data.title || $rootScope.getStateTitle(parentState) : "";
 		}
 	};
 
