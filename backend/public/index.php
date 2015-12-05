@@ -12,7 +12,12 @@ $app->get($appConfig['apiPrefix'] . '/orders', function () use ($app) {
 });
 
 $app->get($appConfig['apiPrefix'] . '/orders/:id', function ($id) use ($app) {
-   $app->render(200, ['result' => Order::with('products')->find($id)]); 
+    $order = Order::with('products')->find($id);
+    if ($order) {
+        $app->render(200, ['result' => $order]);
+    } else {
+        $app->render(404);
+    }
 });
 
 // products
@@ -21,8 +26,12 @@ $app->get($appConfig['apiPrefix'] . '/products', function () use ($app) {
 });
 
 $app->get($appConfig['apiPrefix'] . '/products/:id', function ($id) use ($app) {
-   $app->render(200, ['result' => Product::find($id)]); 
+    $product = Product::find($id);
+    if ($product) {
+        $app->render(200, ['result' => $product]); 
+    } else {
+        $app->render(404);
+    }
 });
 
 $app->run();
-?>
