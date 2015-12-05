@@ -65,13 +65,10 @@ var forProduction    = false,
 	imageminConfig   = { progressive: true };
 
 var browserifyBundle = function (b, callback) {
-	var apiKey = forProduction ? prodGoogleApiKey : devGoogleApiKey;
-
 	var stream = b.bundle()
 		.pipe(source(mainJs))
 		.pipe(buffer())
 		.pipe(sourcemaps.init())
-		.pipe(wrap("(function () {\nvar googleApiKey = '" + apiKey + "';\n", "}());\n"));
 
 	if (forProduction)
 		stream.pipe(uglify());
@@ -80,7 +77,7 @@ var browserifyBundle = function (b, callback) {
 		.pipe(sourcemaps.write("./"))
 		.pipe(gulp.dest("./public/js"))
 		.pipe(livereload())
-		.on("end", callback);
+		.on("end", callback || function () {});
 
 	return stream;
 };
@@ -117,14 +114,13 @@ gulp.task("vendorJs", function () {
 
 gulp.task("sass", function () {
 	return gulp.src(sassSource)
-		.pipe(plumber())
 		.pipe(sass())
 		.pipe(please({
 			autoprefixer: {
 				browsers: ["last 2 versions"],
 				cascade: false
 			},
-			minifier: minifyCss,
+			minifier: forProduction,
 			mqpacker: true
 		}))
 		.pipe(gulp.dest("./public/css"))
