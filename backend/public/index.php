@@ -13,6 +13,11 @@ $app->add(new \Slim\Middleware\JwtAuthentication([
     }
 ]));
 
+$corsOptions = [
+	'origin' => '*'
+];
+$app->add(new \CorsSlim\CorsSlim($corsOptions));
+
 require '../routes/users.php';
 require '../routes/orders.php';
 
