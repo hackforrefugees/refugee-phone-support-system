@@ -1,0 +1,16 @@
+<section>
+	<div class="inner">
+		<form ng-submit="ctrl.register(ctrl.form)">
+			<input type="text" ng-model="ctrl.form.name" placeholder="Namn" required>
+			<input type="email" ng-model="ctrl.form.email" placeholder="E-mail" required>
+			<input type="text" ng-model="ctrl.form.phone" placeholder="Telefon" required>
+			<input type="password" ng-model="ctrl.form.password" placeholder="Lösenord" required>
+
+			<div class="help">
+				<a ui-sref="login">Logga in</a>
+			</div>
+
+			<input type="submit" value="Registrera dig &#10095;">
+		</form>
+	</div>
+</section>

@@ -20,9 +20,10 @@ var app = angular.module("RefPhoneAuth", [
 ]);
 
 app.controller("MainCtrl", require("./main-ctrl.js"));
+app.controller("RegisterCtrl", require("./register-ctrl.js"));
 app.controller("LoginCtrl", require("./login-ctrl.js"));
 
-app.constant("apiUrl", "//172.20.10.5");
+app.constant("apiUrl", "//172.30.159.158:9000/v1");
 
 app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $httpProvider) {
 	$locationProvider.html5Mode(true);
@@ -36,14 +37,26 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $htt
 
 	$httpProvider.interceptors.push(function ($q) {
 		return {
-			request: function(config) {
-				console.log("Intercepting", config.url);
-				return config;
+			responseError: function (rejection) {
+				if (rejection.status > 400 && rejection.status !== 404) {
+					$state.go("login", {
+						toState: $state.current,
+						toParams: $state.params
+					});
+				}
+
+				return rejection;
 			}
 		};
 	});
 
 	$stateProvider
+		.state("register", {
+			controller: "RegisterCtrl",
+			controllerAs: "ctrl",
+			templateUrl: "/register.html",
+			url: "/register"
+		})
 		.state("login", {
 			controller: "LoginCtrl",
 			controllerAs: "ctrl",
@@ -52,7 +65,7 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $htt
 				toState: "index",
 				toParams: {}
 			},
-			url: "/"
+			url: "/login"
 		})
 
 		.state("index", {
@@ -133,7 +146,7 @@ app.run(function ($rootScope, $state, $timeout) {
 	$rootScope.$on("$stateChangeStart", function(event, toState, toParams) {
 		$rootScope.loading = true;
 
-		if (!$rootScope.currentUser && toState.name !== "login") {
+		if (!$rootScope.currentUser && ["register", "login"].indexOf(toState.name) === -1) {
 			event.preventDefault();
 			$state.go("login", {toState, toParams});
 			return false;

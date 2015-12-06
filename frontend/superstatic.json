@@ -1,6 +1,8 @@
 {
   "public": "public",
   "rewrites": [
+    {"source": "/login", "destination": "/index.html"},
+    {"source": "/register", "destination": "/index.html"},  
     {"source": "/users/", "destination": "/index.html"},
     {"source": "/users/*", "destination": "/index.html"}
   ],

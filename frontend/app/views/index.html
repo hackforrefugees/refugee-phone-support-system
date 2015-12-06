@@ -10,7 +10,7 @@
 
 	<script src="https://cdn.polyfill.io/v2/polyfill.min.js?unknown=polyfill"></script>
 </head>
-<body ng-app="RefPhoneAuth" ng-class="{'non-authenticated': $state.current.name === 'login'}">
+<body ng-app="RefPhoneAuth" ng-class="{'non-authenticated': ['register', 'login'].indexOf($state.current.name) > -1}">
 	<section class="thin header">
 		<header>
 			<a ui-sref="index">
@@ -23,7 +23,7 @@
 
 	<ui-view></ui-view>
 
-	<nav ng-if="$state.current.name !== 'login'">
+	<nav ng-if="['register', 'login'].indexOf($state.current.name) === -1">
 		<a ui-sref="user.single.me" ui-sref-active="active">Din användare</a>
 		<a ui-sref="user.list" ui-sref-active="active">Alla användare</a>
 		<a ui-sref="order.list" ui-sref-active="active">Alla ordrar</a>
