@@ -11,6 +11,8 @@ $app->add(new \Slim\Middleware\JwtAuthentication([
     'path'     => $appConfig['apiPrefix'],
     'callback' => function ($options) use ($app) {
         $app->jwt = $options['decoded'];
+
+        $app->loggedInUser = User::find($app->jwt->user_id);
     }
 ]));
 
