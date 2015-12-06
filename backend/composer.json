@@ -5,7 +5,8 @@
         "illuminate/database": "*",
         "vlucas/valitron": "^1.2",
         "tuupola/slim-jwt-auth": "^1.0",
-        "lcobucci/jwt": "^3.1"
+        "lcobucci/jwt": "^3.1",
+        "palanik/corsslim": "*"
     },
     "autoload": {
         "files": [ "db.php" ],
