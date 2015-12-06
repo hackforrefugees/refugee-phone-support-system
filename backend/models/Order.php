@@ -18,4 +18,9 @@ class Order extends BaseModel
     {
     	return $this->belongsTo('\User');
     }
+
+    public function area()
+    {
+        return $this->hasOne('\Area');
+    }
 }
