@@ -10,7 +10,7 @@ $app->add(new \Slim\Middleware\JwtAuthentication([
     'path'     => '/api'
 ]));
 
-require 'users.php';
-require 'orders.php';
+require '../routes/users.php';
+require '../routes/orders.php';
 
 $app->run();
