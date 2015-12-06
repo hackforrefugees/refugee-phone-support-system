@@ -8,4 +8,10 @@ class User extends BaseModel
     							'active'   => 'boolean',
     							'verified' => 'boolean'
 							];
+
+	public function modules()
+    {
+        return $this->hasMany('\Module');
+    }
+
 }

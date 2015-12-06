@@ -61,3 +61,14 @@ $app->put($appConfig['apiPrefix'] . '/users/:id', function ($id) use ($app) {
         $app->render(500);
     }
 });
+
+// modules
+
+$app->get($appConfig['apiPrefix'] . '/users/:id/modules', function ($id) use ($app) {
+    $user = User::find($id);
+    if ($user) {
+        $app->render(200, ['result' => $user->modules()]);
+    } else {
+        $app->render(404);
+    }
+});
