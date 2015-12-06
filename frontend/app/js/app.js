@@ -23,6 +23,7 @@ app.controller("MainCtrl", require("./main-ctrl.js"));
 app.controller("RegisterCtrl", require("./register-ctrl.js"));
 app.controller("LoginCtrl", require("./login-ctrl.js"));
 
+app.constant("baseUrl", "//172.30.159.158:9000");
 app.constant("apiUrl", "//172.30.159.158:9000/v1");
 
 app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $httpProvider) {
