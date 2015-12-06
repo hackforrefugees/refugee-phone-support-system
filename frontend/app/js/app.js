@@ -35,21 +35,6 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $htt
 		}];
 	};
 
-	$httpProvider.interceptors.push(function ($q) {
-		return {
-			responseError: function (rejection) {
-				if (rejection.status > 400 && rejection.status !== 404) {
-					$state.go("login", {
-						toState: $state.current,
-						toParams: $state.params
-					});
-				}
-
-				return rejection;
-			}
-		};
-	});
-
 	$stateProvider
 		.state("register", {
 			controller: "RegisterCtrl",

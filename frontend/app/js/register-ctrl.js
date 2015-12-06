@@ -7,11 +7,15 @@ module.exports = function ($state, $stateParams, User) {
 	this.register = details => {
 		this.registering = true;
 
-		User.register(details, result => {
-			console.log(result);
+		var request = User.register(details);
 
-			this.registering = false;
+		request.$promise.then(result => {
+			console.log(result);
 			$state.go("login");
-		});
+		}).catch(error => {
+			console.error(error);
+		}).finally(() => {
+			this.registering = false;
+		})
 	};
 };
