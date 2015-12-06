@@ -7,8 +7,18 @@ $app->view(new \JsonApiView());
 $app->add(new \JsonApiMiddleware());
 $app->add(new \Slim\Middleware\JwtAuthentication([
     'secret'   => $appConfig['jwtSecret'],
-    'path'     => '/api'
+    'secure'   => false,
+    'path'     => $appConfig['apiPrefix'],
+    'callback' => function ($options) use ($app) {
+        $app->jwt = $options['decoded'];
+    }
 ]));
+
+$corsOptions = [
+	'origin' => '*',
+	'allowMethods' => array('POST,GET,PUT,DELETE')
+];
+$app->add(new \CorsSlim\CorsSlim($corsOptions));
 
 require '../routes/users.php';
 require '../routes/orders.php';

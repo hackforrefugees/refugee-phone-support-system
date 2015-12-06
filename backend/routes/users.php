@@ -1,7 +1,9 @@
 <?php
 
+require('../config.php');
+
 // auth
-$app->post('/login', function() use ($app) {
+$app->post('/login', function() use ($app, $appConfig) {
     $user = User::whereEmail($app->request->post('email'))->first();
     if (!$user) {
         $app->render(403);
@@ -9,9 +11,12 @@ $app->post('/login', function() use ($app) {
 
     $password = $app->request->post('password');
     if (password_verify($password, $user->password_hash)) {
+        $signer = new Lcobucci\JWT\Signer\Hmac\Sha256();
         $token = (new Lcobucci\JWT\Builder())->setIssuer('http://example.com') // Configures the issuer (iss claim)
                         ->setIssuedAt(time()) // Configures the time that the token was issue (iat claim)
                         ->setExpiration(time() + 3600) // Configures the expiration time of the token (exp claim)
+                        ->set('user_id', $user->id)
+                        ->sign($signer, $appConfig['jwtSecret'])
                         ->getToken(); // Retrieves the generated token
 
         $app->render(200, ['token' => (string)$token]);
