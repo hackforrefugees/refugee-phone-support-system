@@ -11,11 +11,12 @@ details summary::-webkit-details-marker {display: none;}
 
 
 /* Variables */
-$max_width: 1200px;
-
 $general_font_size: 16px;
 $general_line_height: 1.5em;
 $general_font_family: 'Roboto', sans-serif;
+
+$max_width: 1080px;
+$thin_max_width: ($max_width - $general_font_size*28);
 
 $color_main: #135295;
 $color_main_light: #569fef;
@@ -23,6 +24,9 @@ $color_main_lighter: #ebf3ff;
 $color_secondary: #f7c948;
 $color_grey_bg: #e6e6e6;
 $color_grey_text: #999999;
+$color_facebook: #4c67a0;
+$color_gravatar: #1e8cbe;
+$color_linkedin: #0077b5;
 
 $border: 1px solid #999;
 $border_radius: $general_line_height/8;
@@ -112,7 +116,7 @@ header {
     text-align: left;
     
     .thin & {
-        max-width: $max_width/2;
+        max-width: $thin_max_width;
     }
 }
 
@@ -121,11 +125,11 @@ header {
     margin: 0 auto;
     
     .thin & {
-        max-width: $max_width/2;
+        max-width: $thin_max_width;
     }
 }
 
-.module {
+.centered {
     text-align: center;
 }
 
@@ -223,6 +227,16 @@ form {
     margin: 0 0 0 auto;
 }
 
+#avatar {
+    width: 10em;
+    height: auto;
+    border-radius: 5em;
+    position: absolute;
+    transform: translate(-12em,-1em);
+    -webkit-transform: translate(-12em,-1em);
+    box-shadow: 0px 0px 0.5em rgba(0, 0, 0, 0.2);
+}
+
 .non-authenticated {
     
     background-image: url(../img/poepleholdingphones.jpg);
@@ -274,6 +288,20 @@ nav {
         &.active {
             background: $color_main_light;
         }
+    }
+}
+
+.module {
+    background-color: #fff;
+    border-top: 2px solid #ddd;
+    &.facebook {
+        border-top-color: $color_facebook;
+    }
+    &.gravatar {
+        border-top-color: $color_gravatar;
+    }
+    &.linkedin {
+        border-top-color: $color_linkedin;
     }
 }
 
@@ -389,18 +417,24 @@ button {
     cursor: pointer;
     &.facebook {
         color: #fff;
-        background: #4c67a0;
+        background: $color_facebook;
     }
     &.linkedin {
         color: #fff;
-        background: #0077b5;
+        background: $color_linkedin;
     }
 }
 
-@media screen and (max-width: 960px ) {
+@media screen and (max-width: $max_width ) {
     
-    body {
-        font-size: 14px;
+    #avatar {
+        
+        position: relative;
+        float: left;
+        margin: 0 $general_line_height $general_line_height 0;
+        transform: none;
+        -webkit-transform: none;
+        
     }
     
 }
