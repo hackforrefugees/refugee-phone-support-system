@@ -11,16 +11,6 @@ $appConfig = [
 		'charset'   => 'utf8',
 		'prefix'    => ''
 	],
-	'userDb' => [
-		'driver'    => 'pgsql',
-		'host'      => '',
-		'database'  => '',
-		'username'  => '',
-		'password'  => '',
-		'charset'   => 'utf8',
-	    'collation' => 'utf8_unicode_ci',
-	    'prefix'    => ''
-	],
 	'apiPrefix' => '/v1',
 	'timezone'  => 'Europe/Stockholm',
 	'jwtSecret' => 'suuuupersecretkey'
