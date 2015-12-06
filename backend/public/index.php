@@ -7,6 +7,7 @@ $app->view(new \JsonApiView());
 $app->add(new \JsonApiMiddleware());
 $app->add(new \Slim\Middleware\JwtAuthentication([
     'secret'   => $appConfig['jwtSecret'],
+    'secure'   => false,
     'path'     => $appConfig['apiPrefix'],
     'callback' => function ($options) use ($app) {
         $app->jwt = $options['decoded'];
