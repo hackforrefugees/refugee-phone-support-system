@@ -8,7 +8,6 @@ require('../config.php');
  */
 $capsule = new Capsule;
 $capsule->addConnection($appConfig['db']);
-$capsule->addConnection($appConfig['userDb'], 'userDb');
 $capsule->setAsGlobal();
 $capsule->bootEloquent();
 // set timezone for timestamps etc
