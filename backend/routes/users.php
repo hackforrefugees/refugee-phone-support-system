@@ -16,7 +16,6 @@ $app->post('/login', function() use ($app, $appConfig) {
                         ->setIssuedAt(time()) // Configures the time that the token was issue (iat claim)
                         ->setExpiration(time() + 3600) // Configures the expiration time of the token (exp claim)
                         ->set('user_id', $user->id)
-                        ->set('role', $user->role)
                         ->sign($signer, $appConfig['jwtSecret'])
                         ->getToken(); // Retrieves the generated token
 
