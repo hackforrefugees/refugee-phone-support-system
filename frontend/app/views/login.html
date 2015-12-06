@@ -1,0 +1,14 @@
+<section>
+	<div class="inner">
+		<form name="LoginForm" ng-submit="ctrl.login(ctrl.form)">
+			<input type="email" ng-model="ctrl.form.email" placeholder="E-mail" required>
+			<input type="password" ng-model="ctrl.form.password" placeholder="Lösenord" required>
+
+			<div class="help">
+				<a ui-sref="register">Registrera dig</a>
+			</div>
+
+			<input type="submit" value="Logga in &#10095;">
+		</form>
+	</div>
+</section>

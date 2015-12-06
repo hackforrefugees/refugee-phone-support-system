@@ -1,0 +1,399 @@
+/* Eric Meyer's Reset CSS v2.0 - http://cssreset.com */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
+
+/* LL Edits*/
+body,input,textarea,button{-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing:grayscale;}
+input,textarea,button{-webkit-appearance:none;border-radius:0;}
+html { box-sizing: border-box; }
+*, *:before, *:after { box-sizing: inherit; }
+details, summary {outline: none;}
+details summary::-webkit-details-marker {display: none;}
+
+
+/* Variables */
+$max_width: 1200px;
+
+$general_font_size: 16px;
+$general_line_height: 1.5em;
+$general_font_family: 'Roboto', sans-serif;
+
+$color_main: #135295;
+$color_main_light: #569fef;
+$color_main_lighter: #ebf3ff;
+$color_secondary: #f7c948;
+$color_grey_bg: #e6e6e6;
+$color_grey_text: #999999;
+
+$border: 1px solid #999;
+$border_radius: $general_line_height/8;
+
+/* Classes & Animations */
+.clear {
+    clear: both;
+    display: table;
+    content: '';
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+section {
+    width: 100%;
+    padding: $general_line_height*2 $general_line_height;
+    background: $color_grey_bg;
+
+    &.header {
+        background-image: url("/img/poepleholdingphones.jpg");
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        padding-bottom: $general_line_height;
+
+        &.thin {
+
+            header {
+                max-width: $max_width;
+            }
+
+        }
+
+        h3 {
+            color: #fff;
+            margin-bottom: 0;
+            margin-top: $general_line_height/2;
+        }
+
+        p {
+            color: #fff;
+        }
+
+    }
+
+    .last-child & {
+        padding-bottom: $general_line_height * 4;
+    }
+
+    &.bg-white {
+        background-color: #fff;
+    }
+}
+
+header {
+    max-width: $max_width;
+    margin: 0 auto;
+    text-align: left;
+
+    .thin & {
+        max-width: $max_width/2;
+    }
+}
+
+.inner {
+    max-width: $max_width;
+    margin: 0 auto;
+
+    .thin & {
+        max-width: $max_width/2;
+    }
+}
+
+.module {
+    text-align: center;
+}
+
+form {
+
+    width: 100%;
+
+    label {
+        display: block;
+        width: 100%;
+        margin-bottom: $general_line_height/2;
+        border-top: 1px solid $color_main;
+        padding-top: $general_line_height/2;
+        &:first-child {
+            border-top: none;
+            padding-top: 0;
+        }
+    }
+
+    input {
+        padding: $general_line_height/2;
+        height: $general_line_height*2;
+        line-height: $general_line_height;
+        margin-bottom: $general_line_height;
+        border: none;
+        border-radius: $border_radius;
+        font-size: 1em;
+        color: #000;
+        &[type=text],
+        &[type=email],
+        &[type=password] {
+            width: 100%;
+        }
+        &[type=submit] {
+            margin: 0 auto;
+            width: 100%;
+            cursor: pointer;
+            background-color: $color_main;
+            color: #fff;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+    }
+
+    textarea {
+        width: 100%;
+        padding: $general_line_height/2;
+        line-height: $general_line_height;
+        margin-bottom: $general_line_height;
+        font-size: 1em;
+        border: none;
+        border-radius: $border_radius;
+    }
+
+    ::placeholder {
+        color: #666;
+    }
+
+    .help {
+        width: 100%;
+        text-align: right;
+    }
+
+    .non-authenticated & {
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            margin-bottom: $general_line_height/4;
+        }
+
+        input[type="submit"] {
+            margin-top: $general_line_height;
+        }
+
+        .help {
+            color: #fff;
+
+            a {
+                color: #fff;
+            }
+        }
+    }
+}
+
+#logo {
+    width: $general_font_size*8;
+    height: auto;
+    display: block;
+    margin: 0 0 0 auto;
+}
+
+.non-authenticated {
+
+    background-image: url("/img/poepleholdingphones.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+
+    header,
+    .inner {
+        max-width: $max_width/3;
+    }
+
+    #logo {
+        width: $general_font_size*20;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+
+    section {
+        background: transparent;
+    }
+
+    h2,h3,p {
+        color: #fff;
+    }
+
+}
+
+main {
+    width: 100%;
+}
+
+nav {
+    position: fixed;
+    bottom:0;
+    left:0;
+    width: 100%;
+    display: flex;
+    box-shadow: 0px 0px 0.5em rgba(0, 0, 0, 0.2);
+    a {
+        color: #fff;
+        flex: 1;
+        padding: $general_line_height/2;
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: bold;
+        background: $color_main;
+        &.active {
+            background: $color_main_light;
+        }
+    }
+}
+
+article {
+
+    background: #fff;
+
+    &:nth-child(2n+2) {
+        background: $color_main_lighter;
+    }
+
+    div {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    &.user {
+
+        padding: $general_line_height;
+
+        .avatar {
+            width: 6em;
+            height: 6em;
+            background: grey;
+            margin-right: $general_line_height;
+        }
+
+    }
+
+}
+
+table {
+    width: 100%;
+    border: none;
+
+    th {
+        text-align: left;
+        font-weight: bold;
+        padding: $general_line_height/2;
+    }
+    td {
+        padding: $general_line_height/2;
+    }
+    thead {
+        tr {
+            background-color: $color_main;
+            color: #fff;
+        }
+    }
+    tbody {
+        tr {
+            background: #fff;
+            &:nth-child(2n+2) {
+                background: $color_main_lighter;
+            }
+        }
+    }
+}
+
+
+/* Typography and Colour */
+
+body {
+    background-color: $color_grey_bg;
+    font-family: $general_font_family;
+    font-size: $general_font_size;
+    line-height: $general_line_height;
+}
+
+h2 {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: $general_line_height;
+    color: $color_main;
+}
+
+h3 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: $general_line_height/2;
+}
+
+h4 {
+    font-weight: bold;
+}
+
+label {
+    color: $color_main;
+    font-size: 1.5em;
+    line-height: $general_line_height*0.75;
+    span {
+        color: $color_grey_text;
+        font-size: 0.75em;
+        width: 100%;
+        display: block;
+    }
+}
+
+a {
+    color: $color_secondary;
+    text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+button,
+.facebook-btn,
+.linkedin-btn {
+    border: none;
+    display: inline-block;
+    padding: $general_line_height*0.75 $general_line_height*0.75;
+    font-size: 1em;
+    font-weight: bold;
+    margin-top: $general_line_height*2;
+
+    &:disabled {
+        color: lightgray;
+    }
+}
+
+button {
+    cursor: pointer;
+}
+
+.facebook-btn {
+    color: #fff;
+    background: #4c67a0;
+}
+.linkedin-btn {
+    color: #fff;
+    background: #0077b5;
+}
+
+@media screen and (max-width: 960px ) {
+
+    body {
+        font-size: 14px;
+    }
+
+}
+
+@media screen and (max-width: 480px ) {
+
+    body {
+        font-size: 12px;
+    }
+
+}

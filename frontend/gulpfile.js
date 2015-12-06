@@ -57,8 +57,8 @@ var forProduction    = false,
 	mainScss         = "./app/scss/app.scss",
 	fontsSrc         = "./app/scss/fonts/*",
 	imgSrc           = "./app/img/*",
-	viewsSrc         = "./app/views/*.html",
 	partialsSrc      = "./app/views/partials/*.html",
+	viewsSrc         = ["./app/views/**/*.html", "!" + partialsSrc],
 	vendorSrc        = "./app/js/vendor/*.js",
 	jsSource         = ["./app/js/**/*.js", "!./app/js/templates.js", "!" + vendorSrc],
 	mainJs           = "./app/js/app.js",
@@ -68,7 +68,7 @@ var browserifyBundle = function (b, callback) {
 	var stream = b.bundle()
 		.pipe(source(mainJs))
 		.pipe(buffer())
-		.pipe(sourcemaps.init())
+		.pipe(sourcemaps.init());
 
 	if (forProduction)
 		stream.pipe(uglify());
@@ -168,28 +168,6 @@ gulp.task("clean", function () {
 	return del("./public");
 });
 
-gulp.task("revRename", function () {
-	return gulp.src("./public/{css,js,img}{/,/vendor/}*!(.ico)")
-		.pipe(rev())
-		.pipe(gulp.dest("./public"))
-		.pipe(rev.manifest())
-		.pipe(gulp.dest("./public"));
-});
-
-gulp.task("revReplace", ["revRename"], function () {
-	var prependSlash = filename => `/${filename}`.replace(/\/{2}/, "/");
-
-	return gulp.src("./public/*.html")
-		.pipe(revReplace({
-			manifest: gulp.src("./public/rev-manifest.json"),
-			modifyUnreved: prependSlash,
-			modifyReved: prependSlash
-		}))
-		.pipe(gulp.dest("./public"));
-});
-
-
-
 gulp.task("jshint", function () {
 	var jshint = require("gulp-jshint");
 
@@ -225,7 +203,7 @@ gulp.task("build", function () {
 	var runSequence = require("run-sequence");
 	forProduction = true;
 
-	return runSequence("clean", ["views", "img", "fonts", "sass", "js", "vendorJs"], "revReplace");
+	return runSequence("clean", ["views", "img", "fonts", "sass", "js", "vendorJs"]);
 });
 
 

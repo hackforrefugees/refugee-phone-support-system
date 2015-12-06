@@ -1,10 +1,10 @@
 {
   "public": "public",
   "rewrites": [
-    {
-      "source": "/example",
-      "destination": "/index.html"
-    }
+    {"source": "/login", "destination": "/index.html"},
+    {"source": "/register", "destination": "/index.html"},  
+    {"source": "/users/", "destination": "/index.html"},
+    {"source": "/users/*", "destination": "/index.html"}
   ],
   "headers": [
     {

@@ -1,0 +1,27 @@
+<section>
+	<header>
+		<h3>Ordrar</h3>
+	</header>
+
+	<div class="inner">
+		<table id="orders">
+			<thead>
+				<tr>
+					<th class="unique_id">Order id.</th>
+					<th class="recipient">Beställare</th>
+					<th class="amount_phones">Antal telefoner</th>
+					<th class="amount_sims">Antal sim-kort</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr ng-repeat="order in orders">
+					<td class="unique_id">{{order.id}}</td>
+					<td class="recipient">{{order.name}}</td>
+					<td class="amount_phones">{{order.amount_phones}}</td>
+					<td class="amount_sims">{{order.name}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</section>

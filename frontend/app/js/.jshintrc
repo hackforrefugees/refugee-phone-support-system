@@ -1,0 +1,19 @@
+{
+  "asi": true,
+  "browser": true,
+  "curly": false,
+  "eqeqeq": true,
+  "eqnull": true,
+  "esnext": true,
+  "evil": true,
+  "expr": true,
+  "funcscope": true,
+  "newcap": false,
+  "node": true,
+  "strict": true,
+  "globalstrict": false,
+  "undef": true,
+  "predef": {
+    "Modernizr": true
+  }
+}
