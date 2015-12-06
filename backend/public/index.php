@@ -72,6 +72,41 @@ $app->put($appConfig['apiPrefix'] . '/users/:id', function ($id) use ($app) {
     }
 });
 
+// areas
+$app->get($appConfig['apiPrefix'] . '/areas', function() use ($app) {
+    $app->render(200, ['result' => Order::all()]);
+});
+
+$app->post($appConfig['apiPrefix'] . '/areas', function() use ($app) {
+    $area = new Area();
+    $valid = $area->validate($app->request->post());
+    if (!$valid) {
+        $app->render(400, ['validation' => $area->errors]);
+    }
+
+    $area->fill($app->request->post());
+    if ($area->save()) {
+        $app->render(200);
+    } else {
+        $app->render(500);
+    }
+});
+
+$app->put($appConfig['apiPrefix'] . '/areas/:id', function($id) use ($app) {
+    $area = Area::find($id);
+    $valid = $area->validate($app->request->post());
+    if (!$valid) {
+        $app->render(400, ['validation' => $area->errors]);
+    }
+
+    $area->fill($app->request->post());
+    if ($area->save()) {
+        $app->render(200);
+    } else {
+        $app->render(500);
+    }
+});
+
 // orders
 $app->get($appConfig['apiPrefix'] . '/orders', function () use ($app) {
     $app->render(200, ['result' => Order::with('products', 'user')->get()]);
