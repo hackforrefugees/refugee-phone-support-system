@@ -1,14 +1,10 @@
-<section class="thin">
-	<header>
-		<h3>Logga in</h3>
-	</header>
-
+<section>
 	<div class="inner">
-		<form>
-			<label for="email">E-mail</label>
-			<input type="email" id="email" name="email" />
-			<input type="submit" value="Logga in" />
+		<form name="LoginForm" ng-submit="ctrl.login(ctrl.form)">
+			<input type="email" ng-model="ctrl.form.email" placeholder="E-mail" required>
+			<input type="password" ng-model="ctrl.form.password" placeholder="Lösenord" required>
+
+			<input type="submit" value="Logga in &#10095;">
 		</form>
 	</div>
-
 </section>

@@ -1,6 +1,8 @@
 "use strict";
 
 /* @ngInject */
-module.exports = function ($resource, apiUrl) {
-	return $resource(apiUrl + "/orders");
+module.exports = function ($resource, apiUrl, resourceInterceptors) {
+	return $resource(apiUrl + "/orders", {
+		interceptor: resourceInterceptors
+	});
 };

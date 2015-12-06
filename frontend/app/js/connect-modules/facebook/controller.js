@@ -3,9 +3,9 @@
 "use strict";
 
 /* @ngInject */
-module.exports = function ($rootScope, $scope, loadFacebookSDK) {
+module.exports = function ($scope, loadFacebookSDK) {
 	this.loggingIn = true;
-	$rootScope.user = this.user = {};
+	this.user = {};
 
 	loadFacebookSDK(() => {
 		this.fbInitted = true;

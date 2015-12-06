@@ -4,26 +4,27 @@
 	<meta charset="utf-8">
 	<title>Refugee Phones Auth</title>
 
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="/css/app.css">
 	<base href="/">
 
 	<script src="https://cdn.polyfill.io/v2/polyfill.min.js?unknown=polyfill"></script>
 </head>
-<body ng-app="RefPhoneAuth">
+<body ng-app="RefPhoneAuth" ng-class="{'non-authenticated': $state.current.name === 'login'}">
 	<section class="thin header">
 		<header>
 			<a ui-sref="index">
-				<img id="logo" src="/img/logo_white.png">
+				<img id="logo" src="/img/logo_white.png" alt="Refugee Phones">
 			</a>
 		</header>
 
 		<div class="inner" ui-view="header"></div>
 	</section>
 
-	<main ui-view="body"></main>
+	<ui-view></ui-view>
 
-	<nav>
-		<a ui-sref="user.single" ui-sref-active="active">Din användare</a>
+	<nav ng-if="$state.current.name !== 'login'">
+		<a ui-sref="user.single.me" ui-sref-active="active">Din användare</a>
 		<a ui-sref="user.list" ui-sref-active="active">Alla användare</a>
 		<a ui-sref="order.list" ui-sref-active="active">Alla ordrar</a>
 		<a ui-sref="order.create" ui-sref-active="active">Skapa order</a>

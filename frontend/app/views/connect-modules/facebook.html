@@ -3,9 +3,10 @@
 		<h3>Autensiera dig själv via Facebook</h3>
 
 		<div>
-			<img ng-src="{{fb.getFacebookProfileImage()}}">
+			<img ng-src="{{ctrl.getFacebookProfileImage()}}">
 		</div>
 
-		<button class="facebook" ng-click="fb.login()" >Logga in med Facebook</button>
+		<button class="facebook-btn" ng-if="ctrl.connStatus !== 'connected'" ng-click="ctrl.login()">Logga in med Facebook</button>
+		<div class="facebook-btn" ng-if="ctrl.connStatus === 'connected'">Inloggad med Facebook!</div>
 	</div>
 </section>

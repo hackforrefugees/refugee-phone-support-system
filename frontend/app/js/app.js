@@ -20,6 +20,7 @@ var app = angular.module("RefPhoneAuth", [
 ]);
 
 app.controller("MainCtrl", require("./main-ctrl.js"));
+app.controller("LoginCtrl", require("./login-ctrl.js"));
 
 app.constant("apiUrl", "//172.20.10.5");
 
@@ -43,9 +44,20 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $htt
 	});
 
 	$stateProvider
+		.state("login", {
+			controller: "LoginCtrl",
+			controllerAs: "ctrl",
+			templateUrl: "/login.html",
+			params: {
+				toState: "index",
+				toParams: {}
+			},
+			url: "/"
+		})
+
 		.state("index", {
 			controller: "MainCtrl",
-			controllerAs: "main",
+			controllerAs: "ctrl",
 			templateUrl: "/main.html",
 			url: "/"
 		})
@@ -77,19 +89,34 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $htt
 			controller: "UserCtrl",
 			controllerAs: "ctrl",
 			redirectTo: "user.list",
-			views: {body: {template: "<div ui-view='bodyContent'></div>"}},
+			template: "<div ui-view='body'></div>",
 			url: "/users"
 		})
 		.state("user.single", {
 			views: {
+				body: { templateUrl: "/user-single.html" }
+			}
+		})
+		.state("user.single.me", {
+			views: {
 				"header@": {
-					template: "<h3>{{user.name || 'John Doe'}}</h3><p>Role</p>"
+					controller: function ($rootScope, $scope) {
+						$scope.user = $rootScope.currentUser;
+					},
+					templateUrl: "partials/user-single-header.html"
 				},
-				bodyContent: {
-					templateUrl: "/user-single.html"
-				}
 			},
-			template: "",
+			url: "/me"
+		})
+		.state("user.single.other", {
+			views: {
+				"header@": {
+					controller: function ($scope) {
+						$scope.user = {};
+					},
+					templateUrl: "partials/user-single-header.html"
+				},
+			},
 			url: "/:id"
 		})
 		.state("user.list", {
@@ -100,34 +127,27 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $htt
 
 
 app.run(function ($rootScope, $state, $timeout) {
+	$rootScope.$state = $state;
+	var stateChangeRetries = 0;
+
 	$rootScope.$on("$stateChangeStart", function(event, toState, toParams) {
+		$rootScope.loading = true;
+
+		if (!$rootScope.currentUser && toState.name !== "login") {
+			event.preventDefault();
+			$state.go("login", {toState, toParams});
+			return false;
+		}
+
 		if (toState.redirectTo) {
 			event.preventDefault();
 			$state.go(toState.redirectTo, toParams);
 		}
 	});
 
-
-
-	$rootScope.getStateTitle = function (state) {
-		if (state.data && state.data.title) {
-			return state.data.title;
-		} else {
-			var parentState = $state.get("^", state.name);
-			return (parentState && parentState.name) ? parentState.data && parentState.data.title || $rootScope.getStateTitle(parentState) : "";
-		}
-	};
-
-	var stateChangeRetries = 0;
-
-	$rootScope.$on("$stateChangeStart", function (event, toState, toParams) {
-		$rootScope.loading = true;
-	});
-
 	$rootScope.$on("$stateChangeSuccess", function (event, toState) {
 		stateChangeRetries = 0;
 		$rootScope.loading = false;
-		$rootScope.title = $rootScope.getStateTitle($state.current);
 	});
 
 	$rootScope.$on("$stateChangeError", function (event, toState, toParams, fromState, fromParams, error) {

@@ -159,7 +159,9 @@ form {
         border-radius: $border_radius;
     }
 
-    ::placeholder { color: #000; }
+    ::placeholder {
+        color: #666;
+    }
 
     .help {
         width: 100%;
@@ -352,26 +354,32 @@ a {
     }
 }
 
-button {
+button,
+.facebook-btn,
+.linkedin-btn {
     border: none;
+    display: inline-block;
     padding: $general_line_height*0.75 $general_line_height*0.75;
     font-size: 1em;
     font-weight: bold;
     margin-top: $general_line_height*2;
-    cursor: pointer;
-
-    &.facebook {
-        color: #fff;
-        background: #4c67a0;
-    }
-    &.linkedin {
-        color: #fff;
-        background: #0077b5;
-    }
 
     &:disabled {
         color: lightgray;
     }
+}
+
+button {
+    cursor: pointer;
+}
+
+.facebook-btn {
+    color: #fff;
+    background: #4c67a0;
+}
+.linkedin-btn {
+    color: #fff;
+    background: #0077b5;
 }
 
 @media screen and (max-width: 960px ) {

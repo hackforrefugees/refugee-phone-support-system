@@ -4,7 +4,7 @@ module.exports = function () {
 	return {
 		restrict: "E",
 		controller: "facebookCtrl",
-		controllerAs: "fb",
+		controllerAs: "ctrl",
 		templateUrl: "/connect-modules/facebook.html",
 		link: function (scope, element, attributes) {
 
