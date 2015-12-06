@@ -9,6 +9,10 @@ class User extends BaseModel
     							'verified' => 'boolean'
 								];
 
+	protected $rules = array(
+		'required' => [['email']]
+	);
+
 	public function modules()
 	{
 		return $this->hasMany('\Module');
