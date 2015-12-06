@@ -11,10 +11,11 @@ $app->add(new \Slim\Middleware\JwtAuthentication([
     'path'     => $appConfig['apiPrefix'],
     'callback' => function ($options) use ($app) {
         $app->jwt = $options['decoded'];
-        $request = json_decode($app->request->getBody());
         $app->loggedInUser = User::find($app->jwt->user_id);
     }
 ]));
+
+$app->jsonBody = json_decode($app->request->getBody(), true);
 
 $corsOptions = [
 	'origin' => '*',

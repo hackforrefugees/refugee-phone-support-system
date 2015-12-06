@@ -4,12 +4,13 @@ require('../config.php');
 
 // auth
 $app->post('/login', function() use ($app, $appConfig) {
-    $user = User::whereEmail($app->request->post('email'))->first();
+
+    $user = User::whereEmail($app->jsonBody['email'])->first();
     if (!$user) {
         $app->render(403);
     }
 
-    $password = $app->request->post('password');
+    $password = $app->jsonBody['password'];
     if (password_verify($password, $user->password_hash)) {
         $signer = new Lcobucci\JWT\Signer\Hmac\Sha256();
         $token = (new Lcobucci\JWT\Builder())->setIssuer('http://example.com') // Configures the issuer (iss claim)
@@ -19,7 +20,7 @@ $app->post('/login', function() use ($app, $appConfig) {
                         ->sign($signer, $appConfig['jwtSecret'])
                         ->getToken(); // Retrieves the generated token
 
-        $app->render(200, ['token' => (string)$token]);
+        $app->render(200, ['token' => (string)$token, 'user' => $user]);
     } else {
         $app->render(403);
     }
@@ -27,8 +28,8 @@ $app->post('/login', function() use ($app, $appConfig) {
 
 $app->post('/register', function() use ($app) {
     $user = new User();
-    $user->email = $app->request->post('email');
-    $user->password_hash = password_hash($app->request->post('password'), PASSWORD_DEFAULT);
+    $user->email = $app->jsonBody['email'];
+    $user->password_hash = password_hash($app->jsonBody['password'], PASSWORD_DEFAULT);
 
     if ($user->save()) {
         $app->render(200);
@@ -54,12 +55,12 @@ $app->get($appConfig['apiPrefix'] . '/users/:id', function ($id) use ($app) {
 $app->put($appConfig['apiPrefix'] . '/users/:id', function ($id) use ($app) {
     $user = User::find($id);
 
-    $valid = $user->validate($app->request->post());
+    $valid = $user->validate($app->jsonBody);
     if (!$valid) {
         $app->render(400, ['validation' => $user->errors]);
     }
 
-    $user->fill($app->request->post());
+    $user->fill($app->jsonBody);
     if ($user->save()) {
         $app->render(200);
     } else {

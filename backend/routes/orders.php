@@ -7,12 +7,12 @@ $app->get($appConfig['apiPrefix'] . '/areas', function() use ($app) {
 
 $app->post($appConfig['apiPrefix'] . '/areas', function() use ($app) {
     $area = new Area();
-    $valid = $area->validate($app->request->post());
+    $valid = $area->validate($app->jsonBody);
     if (!$valid) {
         $app->render(400, ['validation' => $area->errors]);
     }
 
-    $area->fill($app->request->post());
+    $area->fill($app->jsonBody);
     if ($area->save()) {
         $app->render(200);
     } else {
@@ -22,12 +22,12 @@ $app->post($appConfig['apiPrefix'] . '/areas', function() use ($app) {
 
 $app->put($appConfig['apiPrefix'] . '/areas/:id', function($id) use ($app) {
     $area = Area::find($id);
-    $valid = $area->validate($app->request->post());
+    $valid = $area->validate($app->jsonBody);
     if (!$valid) {
         $app->render(400, ['validation' => $area->errors]);
     }
 
-    $area->fill($app->request->post());
+    $area->fill($app->jsonBody);
     if ($area->save()) {
         $app->render(200);
     } else {
@@ -52,12 +52,12 @@ $app->get($appConfig['apiPrefix'] . '/orders/:id', function ($id) use ($app) {
 $app->put($appConfig['apiPrefix'] . '/orders/:id', function ($id) use ($app) {
     $order = Order::find($id);
 
-    $valid = $order->validate($app->request->post());
+    $valid = $order->validate($app->jsonBody);
     if (!$valid) {
         $app->render(400, ['validation' => $order->errors]);
     }
 
-    $order->fill($app->request->post());
+    $order->fill($app->jsonBody);
     if ($order->save()) {
         $app->render(200);
     } else {
@@ -67,12 +67,12 @@ $app->put($appConfig['apiPrefix'] . '/orders/:id', function ($id) use ($app) {
 
 $app->post($appConfig['apiPrefix'] . '/orders', function () use ($app) {
     $order = new Order();
-    $valid = $order->validate($app->request->post());
+    $valid = $order->validate($app->jsonBody);
     if (!$valid) {
         $app->render(400, ['validation' => $order->errors]);
     }
 
-    $order->fill($app->request->post());
+    $order->fill($app->jsonBody);
     if ($order->save()) {
         $app->render(200);
     } else {
