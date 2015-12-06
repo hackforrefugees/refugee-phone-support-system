@@ -303,6 +303,15 @@ nav {
     &.linkedin {
         border-top-color: $color_linkedin;
     }
+    
+    .module-icon {
+        width: $general_font_size*3;
+        height: auto;
+        display: inline-block;
+        vertical-align: top;
+        margin: 0 $general_line_height $general_line_height 0;
+    }
+    
 }
 
 article {
