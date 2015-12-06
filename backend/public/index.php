@@ -15,7 +15,8 @@ $app->add(new \Slim\Middleware\JwtAuthentication([
 ]));
 
 $corsOptions = [
-	'origin' => '*'
+	'origin' => '*',
+	'allowMethods' => array('POST,GET,PUT,DELETE')
 ];
 $app->add(new \CorsSlim\CorsSlim($corsOptions));
 
